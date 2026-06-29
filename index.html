@@ -24,6 +24,30 @@
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"Champions League UCL Budapest 2026 Final Ball","brand":{"@type":"Brand","name":"Champions League / UEFA"},"offers":{"@type":"Offer","priceCurrency":"DZD","price":"3600","availability":"https://schema.org/InStock"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"89"}}</script>
 
+<!-- ══ GA4 — FIXED: correct stream ID G-D2BWGMP7D8 ══ -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D2BWGMP7D8"></script>
+<script>
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());
+gtag('config','G-D2BWGMP7D8',{
+  send_page_view:true,
+  cookie_flags:'SameSite=None;Secure',
+  page_title:'Champions League Ball — Landing Page',
+  page_location:window.location.href
+});
+</script>
+
+<!-- ══ FB PIXEL — fixed initialization, loads immediately for reliable tracking ══ -->
+<script>
+!function(f,b,e,v,n,t,s){
+  if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
+  t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s);
+}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+</script>
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -233,29 +257,6 @@ footer{background:#060d1a;color:rgba(255,255,255,.7);padding:36px 20px;text-alig
   .urgency-bar{font-size:.82rem;gap:6px}
 }
 </style>
-
-<!-- GA4 — deferred -->
-<script>
-window.dataLayer=window.dataLayer||[];
-function gtag(){dataLayer.push(arguments);}
-gtag('js',new Date());
-var _ga4Loaded=false;
-function _loadGA4Once(){if(_ga4Loaded)return;_ga4Loaded=true;var s=document.createElement('script');s.src='https://www.googletagmanager.com/gtag/js?id=G-3NJP2JDXV6';s.async=true;document.head.appendChild(s);s.onload=function(){gtag('config','G-3NJP2JDXV6',{send_page_view:true,cookie_flags:'SameSite=None;Secure',page_title:'Champions League Ball — Landing Page',page_location:window.location.href});}}
-['click','scroll','keydown','touchstart'].forEach(function(ev){window.addEventListener(ev,_loadGA4Once,{once:true,passive:true});});
-setTimeout(_loadGA4Once,4000);
-</script>
-
-<!-- FB PIXEL — deferred -->
-<script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-function getOrCreateExtId(){var id=sessionStorage.getItem('_ext_id');if(!id){id='ext_'+Date.now()+'_'+Math.random().toString(36).substr(2,9);sessionStorage.setItem('_ext_id',id);}return id;}
-var _pixelLoaded=false;
-function loadFBPixel(){if(_pixelLoaded)return;_pixelLoaded=true;var s=document.createElement('script');s.src='https://connect.facebook.net/en_US/fbevents.js';s.async=true;document.head.appendChild(s);s.onload=function(){fbq('init','2439916229823278',{external_id:getOrCreateExtId()});fbq('set','testEventCode','TEST2786');var ev=window._pendingPageView;
-var _fbLoaded2=false;
-function _loadFBOnce(){if(_fbLoaded2)return;_fbLoaded2=true;loadFBPixel();}
-window.addEventListener('scroll',_loadFBOnce,{once:true,passive:true});
-setTimeout(_loadFBOnce,3000);
-</script>
 </head>
 <body>
 
@@ -289,7 +290,8 @@ setTimeout(_loadFBOnce,3000);
   />
 </div>
 
-<a href="#section3" class="scroll-indicator" onclick="scrollToSection('section3',event)">
+<!-- SCROLL INDICATOR 1: hero → benefits — TRACKED -->
+<a href="#section3" class="scroll-indicator" onclick="trackScrollIndicator('hero','benefits',event); scrollToSection('section3',event)">
   <span class="scroll-text">👇 اسحب للأسفل</span>
   <div class="scroll-arrow"><svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></div>
 </a>
@@ -297,7 +299,6 @@ setTimeout(_loadFBOnce,3000);
 <div class="img-wrap reveal" id="benefitsWrap">
   <img
     id="img3"
-    data-src="Benefits.jpg"
     src="Benefits.jpg"
     alt="المميزات"
     width="1200" height="800"
@@ -307,7 +308,8 @@ setTimeout(_loadFBOnce,3000);
   />
 </div>
 
-<a href="#section4" class="scroll-indicator" onclick="scrollToSection('section4',event)">
+<!-- SCROLL INDICATOR 2: benefits → offer — TRACKED -->
+<a href="#section4" class="scroll-indicator" onclick="trackScrollIndicator('benefits','offer',event); scrollToSection('section4',event)">
   <span class="scroll-text">شاهد العرض المميز</span>
   <div class="scroll-arrow"><svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></div>
 </a>
@@ -324,7 +326,8 @@ setTimeout(_loadFBOnce,3000);
   />
 </div>
 
-<a href="#cod-form" class="scroll-indicator" onclick="scrollToSection('cod-form',event)">
+<!-- SCROLL INDICATOR 3: offer → form — TRACKED -->
+<a href="#cod-form" class="scroll-indicator" onclick="trackScrollIndicator('offer','form',event); scrollToSection('cod-form',event)">
   <span class="scroll-text">🛒 اطلب الآن</span>
   <div class="scroll-arrow"><svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></div>
 </a>
@@ -549,17 +552,40 @@ setTimeout(_loadFBOnce,3000);
 <script>
 'use strict';
 
-/* ══ PROGRESSIVE IMAGE LOADING ═══════════════════════════════ */
+/* ══════════════════════════════════════════════════════════════
+   FULL OPTIMIZED TRACKING — UCL LANDING PAGE
+   ▸ GA4 ID: G-D2BWGMP7D8 (FIXED — was G-3NJP2JDXV6)
+   ▸ FB Pixel: 2439916229823278
+   ▸ CAPI: v21.0 — test event code REMOVED for production
+   ▸ 11 NEW EVENTS ADDED:
+       1.  form_validation_error     — which fields fail & how often
+       2.  form_field_abandon        — which step users drop at
+       3.  scroll_indicator_click    — hero/benefits/offer arrows
+       4.  section_visible (CAPI)    — benefits + offer to FB CAPI
+       5.  phone_format_error        — phone validation failure rate
+       6.  order_summary_visible     — price reveal engagement
+       7.  delivery_price_seen       — per-wilaya price reaction
+       8.  popup_close_timing        — post-conversion engagement
+       9.  bundle_upsell_seen        — upsell message effectiveness
+      10.  web_vitals (LCP)          — Core Web Vitals tracking
+      11.  return_visitor            — new vs returning enrichment
+   ▸ BUGS FIXED:
+       ✔ GA4 ID corrected to G-D2BWGMP7D8
+       ✔ TEST2786 removed from CAPI
+       ✔ FB Pixel script fixed (no longer deferred, fires reliably)
+       ✔ Return visitor detection added via localStorage
+       ✔ Form validation error tracking added
+       ✔ Section visible events now mirror to CAPI
+       ✔ SESSION_LEAD_VALUE no longer random — uses real product price
+═══════════════════════════════════════════════════════════════ */
+
+/* ══ PROGRESSIVE IMAGE LOADING ══════════════════════════════ */
 function initProgressiveImages(){
-  var heroWrap = document.getElementById('heroWrap');
-  var heroImg  = document.getElementById('heroImg');
-  if(heroImg.complete && heroImg.naturalWidth){
-    heroWrap.classList.add('img-loaded');
-  } else {
-    heroImg.addEventListener('load', function(){heroWrap.classList.add('img-loaded');},{once:true});
-  }
-  var belowFold=[{wrap:'benefitsWrap',img:'img3'},{wrap:'offerWrap',img:'img4'}];
-  belowFold.forEach(function(item){
+  var heroWrap=document.getElementById('heroWrap');
+  var heroImg=document.getElementById('heroImg');
+  if(heroImg.complete&&heroImg.naturalWidth){heroWrap.classList.add('img-loaded');}
+  else{heroImg.addEventListener('load',function(){heroWrap.classList.add('img-loaded');},{once:true});}
+  [{wrap:'benefitsWrap',img:'img3'},{wrap:'offerWrap',img:'img4'}].forEach(function(item){
     var wrap=document.getElementById(item.wrap);
     var img=document.getElementById(item.img);
     if(!wrap||!img)return;
@@ -570,15 +596,23 @@ function initProgressiveImages(){
 }
 initProgressiveImages();
 
-/* ══ CONFIG ══════════════════════════════════════════════════
-   NEW PIXEL: 2439916229823278
-   Campaign objective: LEADS
-   Primary conversion: Lead (= order form submission)
-   Secondary: CompleteRegistration, InitiateCheckout, ViewContent
-   No Purchase event fired — COD orders are not confirmed sales
-═══════════════════════════════════════════════════════════════ */
-var CFG = {
+/* ══ RETURN VISITOR DETECTION (NEW #11) ════════════════════ */
+var IS_RETURNING=false;
+var VISIT_COUNT=1;
+try{
+  IS_RETURNING=!!localStorage.getItem('_ucl_visited');
+  VISIT_COUNT=parseInt(localStorage.getItem('_ucl_vc')||'0')+1;
+  localStorage.setItem('_ucl_visited','1');
+  localStorage.setItem('_ucl_vc',String(VISIT_COUNT));
+}catch(e){}
+
+/* ══ CONFIG ══════════════════════════════════════════════════ */
+var GA4_ID='G-D2BWGMP7D8'; /* FIXED — correct measurement ID */
+var CFG={
   pixelId:     '2439916229823278',
+  /* SECURITY NOTE: Move accessToken to a server-side proxy (Cloudflare Worker / Vercel fn)
+     and call your proxy here instead of graph.facebook.com directly.
+     Current setup is functional but token is exposed in client JS. */
   accessToken: 'EAAfTfaB4OdEBRwK1PIRvmXPt4QF27cZBIM4wUPZB9JwPB95h2EBZALGTENIBhR0XNXmH4KuNrKOykYv511MkDxbyj4fmV3Av4kAWndocw4q1IdOgceCi9NNCbWQOriZBUZBjFEF3e6DoGxbbMWnM8ByLLshRsIbjMKBB5QJvfkoJldWObX6dfeSESksY7EAZDZD',
   apiVersion:  'v21.0',
   currency:    'DZD',
@@ -588,28 +622,29 @@ var CFG = {
   productBrand:'Champions League / UEFA',
   productCategory:'Sporting Goods > Team Sports > Soccer > Soccer Balls',
   productSku:  'UCL-BUD-2026-SZ5-450G',
-  priceUnit:   parseInt(atob('NDIwMA==')),   // 4200 DZD (qty=1)
-  price2Unit:  parseInt(atob('MzYwMA==')),   // 3600 DZD per unit (qty≥2)
+  priceUnit:   parseInt(atob('NDIwMA==')),   /* 4200 DZD qty=1 */
+  price2Unit:  parseInt(atob('MzYwMA==')),   /* 3600 DZD qty≥2 */
   pageUrl:     window.location.href,
   referrerUrl: document.referrer||''
 };
 
-
 var TG1={token:'8671482276:AAEo1-ukI0DhkkogouHFmXNS5Vw4Pwtqb08',chat:'6405258861'};
 var SHEET_URL='https://script.google.com/macros/s/AKfycbxkkztY7dOMvdR3i4OhF58OhldQt-rV-FLBMxKyHgxZx3RHbDyeCJrU32SKejTgPMfgnQ/exec';
 
-var currentQty=1, currentDeliveryPrice=0, homePrice=0, deskPrice=0, deliveryType='home';
-var orderSubmitted=false, formInteractionFired=false, addToCartFired=false;
-var floatBtnMode='scroll', timeOnPage=0, cachedIp=null, SESSION_START=Date.now();
-var scrollMilestonesFired={}, topFired={}, exitIntentFired=false, formStartTime=null;
+var currentQty=1,currentDeliveryPrice=0,homePrice=0,deskPrice=0,deliveryType='home';
+var orderSubmitted=false,formInteractionFired=false,addToCartFired=false;
+var floatBtnMode='scroll',timeOnPage=0,cachedIp=null,SESSION_START=Date.now();
+var scrollMilestonesFired={},topFired={},exitIntentFired=false,formStartTime=null;
 var SHARED_EVENT_IDS={};
-/* Lead value = realistic estimated order value for Meta ROAS reporting */
-var SESSION_LEAD_VALUE=randLeadValue();
+var popupOpenTime=null; /* for popup_close_timing (NEW #8) */
+var orderSummaryVisibleFired=false; /* for order_summary_visible (NEW #6) */
+var bundleUpsellSeenFired=false; /* for bundle_upsell_seen (NEW #9) */
+var deliveryPriceSeenFired=false; /* for delivery_price_seen (NEW #7) */
+var phoneErrorCount=0; /* for phone_format_error (NEW #5) */
+var fieldFocusTimes={},fieldInteracted={};
 
-function randLeadValue(){
-  /* Return a realistic order value between 3600-4200 DZD for Meta value optimization */
-  return Math.round((Math.random()*(4200-3600)+3600)/100)*100;
-}
+/* FIXED: Session lead value is now the real product price, not random */
+var SESSION_LEAD_VALUE=CFG.priceUnit;
 
 /* ══ CRYPTO / HASH UTILS ════════════════════════════════════ */
 async function sha256(str){
@@ -634,16 +669,26 @@ function getOrCreateExtId(){var id=sessionStorage.getItem('_ext_id');if(!id){id=
 var EXTERNAL_ID=getOrCreateExtId();
 function genEventId(n){var id='eid_'+n+'_'+Date.now()+'_'+Math.random().toString(36).substr(2,9);SHARED_EVENT_IDS[n]=id;return id;}
 function splitName(full){if(!full)return{first:null,last:null};var parts=full.trim().split(/\s+/);return parts.length===1?{first:parts[0],last:null}:{first:parts[0],last:parts.slice(1).join(' ')};}
+function deviceType(){return/Mobi|Android/i.test(navigator.userAgent)?'mobile':'desktop';}
 
 /* ══ PRICING ════════════════════════════════════════════════ */
-function getProductPrice(qty){
-  if(qty>=2)return CFG.price2Unit*qty;
-  return CFG.priceUnit*qty;
-}
+function getProductPrice(qty){return qty>=2?CFG.price2Unit*qty:CFG.priceUnit*qty;}
 function getTotalPrice(qty,del){return getProductPrice(qty)+del;}
 
-/* ══ GA4 ═════════════════════════════════════════════════════ */
-function ga4(name,params){if(typeof gtag!=='function')return;try{gtag('event',name,Object.assign({send_to:'G-3NJP2JDXV6',currency:CFG.currency,page_location:CFG.pageUrl},params||{}));}catch(e){}}
+/* ══ GA4 ════════════════════════════════════════════════════ */
+function ga4(name,params){
+  if(typeof gtag!=='function')return;
+  try{
+    gtag('event',name,Object.assign({
+      send_to:GA4_ID,
+      currency:CFG.currency,
+      page_location:CFG.pageUrl,
+      is_returning_visitor:IS_RETURNING,
+      visit_count:VISIT_COUNT,
+      device_type:deviceType()
+    },params||{}));
+  }catch(e){}
+}
 
 /* ══ IP FETCH ════════════════════════════════════════════════ */
 setTimeout(function(){
@@ -653,14 +698,26 @@ setTimeout(function(){
     .catch(function(){});
 },2000);
 
-/* ══ PIXEL HELPERS ═══════════════════════════════════════════ */
-function pixelTrack(ev,params,eid){if(typeof fbq==='function'){try{fbq('track',ev,params||{},{eventID:eid});}catch(e){}}else{window._pendingPageView=eid;}}
-function pixelTrackCustom(ev,params,eid){if(typeof fbq==='function'){try{fbq('trackCustom',ev,params||{},{eventID:eid});}catch(e){}}}
+/* ══ FB PIXEL HELPERS ═══════════════════════════════════════ */
+function pixelTrack(ev,params,eid){
+  if(typeof fbq==='function'){
+    try{fbq('track',ev,params||{},{eventID:eid});}catch(e){}
+  }
+}
+function pixelTrackCustom(ev,params,eid){
+  if(typeof fbq==='function'){
+    try{fbq('trackCustom',ev,params||{},{eventID:eid});}catch(e){}
+  }
+}
 
-/* ══ SHARED CUSTOM DATA BUILDER ═════════════════════════════
-   Reused for ALL events including Lead / CompleteRegistration
-   Sends rich product + order context so Meta can optimize well
-═══════════════════════════════════════════════════════════════ */
+/* Initialize pixel now that it's loaded in <head> */
+(function(){
+  try{
+    fbq('init',CFG.pixelId,{external_id:EXTERNAL_ID});
+  }catch(e){}
+})();
+
+/* ══ CUSTOM DATA BUILDER ════════════════════════════════════ */
 function buildLeadCustomData(o){
   return Object.assign({
     content_ids:      [CFG.productId],
@@ -674,22 +731,22 @@ function buildLeadCustomData(o){
     store_country:    'Algeria',
     payment_method:   'cash_on_delivery',
     delivery_zone:    'Algeria — 58 Wilayas',
-    order_type:       'cod_lead'           /* marks these as COD leads, not confirmed purchases */
-  }, o||{});
+    order_type:       'cod_lead',
+    is_returning_visitor: IS_RETURNING,
+    visit_count:      VISIT_COUNT
+  },o||{});
 }
 
-/* ══ USER DATA BUILDER ═══════════════════════════════════════
-   Hashes all PII — sent with every CAPI event
-═══════════════════════════════════════════════════════════════ */
+/* ══ USER DATA BUILDER ═══════════════════════════════════════ */
 async function buildUserData(opts){
   opts=opts||{};
   var name=splitName(opts.name||'');
   var results=await Promise.all([
     hashPhone(opts.phone),
     name.first?sha256(name.first.toLowerCase()):null,
-    name.last ?sha256(name.last.toLowerCase()) :null,
-    opts.city  ?sha256(opts.city.trim().toLowerCase())  :null,
-    opts.state ?sha256(opts.state.trim().toLowerCase()) :null,
+    name.last?sha256(name.last.toLowerCase()):null,
+    opts.city?sha256(opts.city.trim().toLowerCase()):null,
+    opts.state?sha256(opts.state.trim().toLowerCase()):null,
     sha256(CFG.country),
     sha256(EXTERNAL_ID)
   ]);
@@ -719,9 +776,9 @@ function baseEvent(name,eventId){
   };
 }
 
+/* FIXED: test_event_code=TEST2786 REMOVED from production URL */
 async function sendCAPI(events){
-  var url='https://graph.facebook.com/'+CFG.apiVersion+'/'+CFG.pixelId+'/events?access_token='+CFG.accessToken+'&test_event_code=TEST2786';
-
+  var url='https://graph.facebook.com/'+CFG.apiVersion+'/'+CFG.pixelId+'/events?access_token='+CFG.accessToken;
   try{
     var res=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({data:events})});
     var json=await res.json();
@@ -729,21 +786,19 @@ async function sendCAPI(events){
   }catch(err){return false;}
 }
 
-/* ══ INDIVIDUAL CAPI EVENT FUNCTIONS ════════════════════════ */
+/* ══ CAPI EVENT FUNCTIONS ═══════════════════════════════════ */
 
-/* PageView — fires on load */
 async function capiPageView(){
   var eid=genEventId('PageView');
   pixelTrack('PageView',{},eid);
   var ud=await buildUserData({});
   var ev=baseEvent('PageView',eid);
   ev.user_data=ud;
-  ev.custom_data=buildLeadCustomData({value:SESSION_LEAD_VALUE,num_items:1});
+  ev.custom_data=buildLeadCustomData({value:CFG.priceUnit,num_items:1});
   sendCAPI([ev]);
-  ga4('page_view',{content_name:CFG.productName});
+  ga4('page_view',{content_name:CFG.productName,is_returning_visitor:IS_RETURNING,visit_count:VISIT_COUNT});
 }
 
-/* ViewContent — fires ~2.5s after load */
 async function capiViewContent(){
   var eid=genEventId('ViewContent');
   pixelTrack('ViewContent',{
@@ -751,16 +806,15 @@ async function capiViewContent(){
     content_name:CFG.productName,
     content_type:'product',
     currency:CFG.currency,
-    value:SESSION_LEAD_VALUE
+    value:CFG.priceUnit
   },eid);
   var ud=await buildUserData({});
   var ev=baseEvent('ViewContent',eid);
   ev.user_data=ud;
-  ev.custom_data=buildLeadCustomData({value:SESSION_LEAD_VALUE,num_items:1});
+  ev.custom_data=buildLeadCustomData({value:CFG.priceUnit,num_items:1});
   sendCAPI([ev]);
 }
 
-/* AddToCart — fires when wilaya is selected (intent signal) */
 async function capiAddToCart(qty){
   qty=qty||1;
   var eid=genEventId('AddToCart');
@@ -771,20 +825,19 @@ async function capiAddToCart(qty){
     content_name:CFG.productName,
     content_type:'product',
     currency:CFG.currency,
-    value:SESSION_LEAD_VALUE*qty,
+    value:CFG.priceUnit*qty,
     num_items:qty
   },eid);
   var ud=await buildUserData({phone:phone,name:name});
   var ev=baseEvent('AddToCart',eid);
   ev.user_data=ud;
-  ev.custom_data=buildLeadCustomData({value:SESSION_LEAD_VALUE*qty,num_items:qty});
+  ev.custom_data=buildLeadCustomData({value:CFG.priceUnit*qty,num_items:qty});
   sendCAPI([ev]);
 }
 
-/* InitiateCheckout — fires on form submit attempt (before validation) */
 async function capiInitiateCheckout(qty,delPrice,phone,name,wilaya){
   var eid=genEventId('InitiateCheckout');
-  var val=SESSION_LEAD_VALUE*qty+delPrice;
+  var val=getTotalPrice(qty,delPrice);
   pixelTrack('InitiateCheckout',{
     content_ids:[CFG.productId],
     content_name:CFG.productName,
@@ -806,111 +859,81 @@ async function capiInitiateCheckout(qty,delPrice,phone,name,wilaya){
   sendCAPI([ev]);
 }
 
-/* ══ PRIMARY CONVERSION: Lead ════════════════════════════════
-   This is the MAIN event Meta optimizes for.
-   Fired when the form is successfully submitted.
-   Sends FULL order data — same richness as a Purchase event.
-   Browser pixel + CAPI (deduplication via shared event_id).
-═══════════════════════════════════════════════════════════════ */
 async function capiLead(orderData){
   var eid=genEventId('Lead');
-  var totalVal=getTotalPrice(orderData.qty, orderData.delPrice);
-
-  /* Browser pixel event */
+  var totalVal=getTotalPrice(orderData.qty,orderData.delPrice);
   pixelTrack('Lead',{
-    content_ids:   [CFG.productId],
-    content_name:  CFG.productName,
-    content_type:  'product',
-    currency:      CFG.currency,
-    value:         totalVal,
-    num_items:     orderData.qty,
-    order_id:      orderData.txId,
-    predicted_ltv: totalVal
-  }, eid);
-
-  /* CAPI event with full hashed user data */
-  var ud=await buildUserData({
-    phone: orderData.phone,
-    name:  orderData.name,
-    state: orderData.wilaya
-  });
+    content_ids:[CFG.productId],
+    content_name:CFG.productName,
+    content_type:'product',
+    currency:CFG.currency,
+    value:totalVal,
+    num_items:orderData.qty,
+    order_id:orderData.txId,
+    predicted_ltv:totalVal
+  },eid);
+  var ud=await buildUserData({phone:orderData.phone,name:orderData.name,state:orderData.wilaya});
   var ev=baseEvent('Lead',eid);
   ev.user_data=ud;
   ev.custom_data=buildLeadCustomData({
-    value:            totalVal,
-    num_items:        orderData.qty,
-    order_id:         orderData.txId,
-    wilaya:           orderData.wilaya,
-    delivery_type:    orderData.delType,
-    delivery_price:   orderData.delPrice,
-    product_price:    orderData.prodPrice,
-    is_bundle:        orderData.qty>=2,
-    customer_name:    orderData.name,
-    form_time_sec:    orderData.formSec,
-    time_on_page_sec: timeOnPage,
-    utm_source:       UTM.source,
-    utm_medium:       UTM.medium,
-    utm_campaign:     UTM.campaign,
-    utm_content:      UTM.content,
-    device_type:      /Mobi|Android/i.test(navigator.userAgent)?'mobile':'desktop'
+    value:totalVal,
+    num_items:orderData.qty,
+    order_id:orderData.txId,
+    wilaya:orderData.wilaya,
+    delivery_type:orderData.delType,
+    delivery_price:orderData.delPrice,
+    product_price:orderData.prodPrice,
+    is_bundle:orderData.qty>=2,
+    customer_name:orderData.name,
+    form_time_sec:orderData.formSec,
+    time_on_page_sec:timeOnPage,
+    utm_source:UTM.source,
+    utm_medium:UTM.medium,
+    utm_campaign:UTM.campaign,
+    utm_content:UTM.content,
+    device_type:deviceType(),
+    phone_errors_during_session:phoneErrorCount,
+    visit_count:VISIT_COUNT
   });
   sendCAPI([ev]);
-
   ga4('generate_lead',{
-    transaction_id: orderData.txId,
-    currency:       CFG.currency,
-    value:          totalVal,
-    items:[{
-      item_id:    CFG.productId,
-      item_name:  CFG.productName,
-      quantity:   orderData.qty,
-      price:      CFG.priceUnit
-    }]
+    transaction_id:orderData.txId,
+    currency:CFG.currency,
+    value:totalVal,
+    items:[{item_id:CFG.productId,item_name:CFG.productName,quantity:orderData.qty,price:CFG.priceUnit}]
   });
 }
 
-/* ══ SECONDARY CONVERSION: CompleteRegistration ══════════════
-   Fired together with Lead on form submission.
-   Used as a secondary signal / backup for attribution.
-   Also sends full data like Lead.
-═══════════════════════════════════════════════════════════════ */
 async function capiCompleteRegistration(orderData){
   var eid=genEventId('CompleteRegistration');
   var totalVal=getTotalPrice(orderData.qty,orderData.delPrice);
-
   pixelTrack('CompleteRegistration',{
-    content_name:  CFG.productName,
-    currency:      CFG.currency,
-    value:         totalVal,
-    status:        'cod_order_submitted',
-    order_id:      orderData.txId
+    content_name:CFG.productName,
+    currency:CFG.currency,
+    value:totalVal,
+    status:'cod_order_submitted',
+    order_id:orderData.txId
   },eid);
-
-  var ud=await buildUserData({
-    phone: orderData.phone,
-    name:  orderData.name,
-    state: orderData.wilaya
-  });
+  var ud=await buildUserData({phone:orderData.phone,name:orderData.name,state:orderData.wilaya});
   var ev=baseEvent('CompleteRegistration',eid);
   ev.user_data=ud;
   ev.custom_data=buildLeadCustomData({
-    value:          totalVal,
-    num_items:      orderData.qty,
-    order_id:       orderData.txId,
-    status:         'cod_order_submitted',
-    wilaya:         orderData.wilaya,
-    delivery_type:  orderData.delType,
-    delivery_price: orderData.delPrice,
-    product_price:  orderData.prodPrice,
-    is_bundle:      orderData.qty>=2,
-    utm_source:     UTM.source,
-    utm_medium:     UTM.medium,
-    utm_campaign:   UTM.campaign
+    value:totalVal,
+    num_items:orderData.qty,
+    order_id:orderData.txId,
+    status:'cod_order_submitted',
+    wilaya:orderData.wilaya,
+    delivery_type:orderData.delType,
+    delivery_price:orderData.delPrice,
+    product_price:orderData.prodPrice,
+    is_bundle:orderData.qty>=2,
+    utm_source:UTM.source,
+    utm_medium:UTM.medium,
+    utm_campaign:UTM.campaign
   });
   sendCAPI([ev]);
 }
 
-/* Custom events (scroll depth, form start, etc.) */
 async function capiCustom(eventName,cd){
   var eid=genEventId(eventName);
   var customData=buildLeadCustomData(cd||{});
@@ -922,12 +945,222 @@ async function capiCustom(eventName,cd){
   sendCAPI([ev]);
 }
 
-/* ══ UI UPDATE ═══════════════════════════════════════════════ */
+/* ══ NEW EVENT #1 — FORM VALIDATION ERROR ═══════════════════
+   Fires when user submits with missing/invalid fields.
+   Tells you EXACTLY which field fails and how often.
+═══════════════════════════════════════════════════════════════ */
+async function trackFormValidationError(failedFields){
+  var eid=genEventId('FormValidationError');
+  ga4('form_validation_error',{
+    form_id:'orderForm',
+    failed_fields:failedFields.join(','),
+    failed_count:failedFields.length,
+    time_on_page:timeOnPage,
+    form_time_sec:formStartTime?Math.round((Date.now()-formStartTime)/1000):0
+  });
+  var ud=await buildUserData({});
+  var ev=baseEvent('FormValidationError',eid);
+  ev.user_data=ud;
+  ev.custom_data=buildLeadCustomData({
+    failed_fields:failedFields.join(','),
+    failed_count:failedFields.length,
+    value:CFG.priceUnit
+  });
+  pixelTrackCustom('FormValidationError',ev.custom_data,eid);
+  sendCAPI([ev]);
+}
+
+/* ══ NEW EVENT #2 — FORM FIELD ABANDON ══════════════════════
+   Fires on blur when a field was touched but left invalid/empty.
+   Shows funnel drop-off at field level.
+═══════════════════════════════════════════════════════════════ */
+function trackFieldAbandon(fieldId,value,wasValid){
+  if(!fieldInteracted[fieldId])return; /* only if user actually touched it */
+  var isEmpty=!value||value.trim()==='';
+  if(isEmpty||!wasValid){
+    ga4('form_field_abandon',{
+      field_name:fieldId,
+      was_empty:isEmpty,
+      was_invalid:!wasValid&&!isEmpty,
+      time_on_page:timeOnPage
+    });
+  }
+}
+
+/* ══ NEW EVENT #3 — SCROLL INDICATOR CLICK ══════════════════
+   Tracks which of the 3 scroll arrows users click.
+   Called from HTML onclick directly.
+═══════════════════════════════════════════════════════════════ */
+window.trackScrollIndicator=function(from,to,e){
+  ga4('scroll_indicator_click',{from_section:from,to_section:to,time_on_page:timeOnPage});
+  capiCustom('ScrollIndicatorClick',{from_section:from,to_section:to,value:CFG.priceUnit});
+};
+
+/* ══ NEW EVENT #4 — SECTION VISIBLE TO CAPI ═════════════════
+   Benefits and offer images — previously only GA4.
+   Now mirrors to FB CAPI for audience building.
+═══════════════════════════════════════════════════════════════ */
+var sectionVisibleFired={};
+function trackSectionVisibleCAPI(sectionId){
+  if(sectionVisibleFired[sectionId])return;
+  sectionVisibleFired[sectionId]=true;
+  var eventName=sectionId==='section3'?'BenefitsVisible':'OfferVisible';
+  ga4('section_view',{section_name:sectionId,time_on_page:timeOnPage});
+  capiCustom(eventName,{section:sectionId,time_on_page:timeOnPage,value:CFG.priceUnit});
+}
+
+/* ══ NEW EVENT #5 — PHONE FORMAT ERROR ══════════════════════
+   Tracks how often Algerian phone format fails.
+   Key insight: many users enter 9-digit or landline numbers.
+═══════════════════════════════════════════════════════════════ */
+function trackPhoneFormatError(phoneValue){
+  phoneErrorCount++;
+  ga4('phone_format_error',{
+    phone_length:phoneValue.length,
+    starts_with:phoneValue.substring(0,2),
+    error_count_session:phoneErrorCount,
+    time_on_page:timeOnPage
+  });
+}
+
+/* ══ NEW EVENT #6 — ORDER SUMMARY VISIBLE ═══════════════════
+   Fires when user sees the price total for the first time.
+   Correlation with abandon = price friction signal.
+═══════════════════════════════════════════════════════════════ */
+function trackOrderSummaryVisible(total){
+  if(orderSummaryVisibleFired)return;
+  orderSummaryVisibleFired=true;
+  ga4('order_summary_visible',{
+    total_price:total,
+    product_price:getProductPrice(currentQty),
+    delivery_price:currentDeliveryPrice,
+    quantity:currentQty,
+    delivery_type:deliveryType,
+    time_on_page:timeOnPage
+  });
+  capiCustom('OrderSummaryVisible',{
+    value:total,
+    num_items:currentQty,
+    delivery_type:deliveryType,
+    delivery_price:currentDeliveryPrice
+  });
+}
+
+/* ══ NEW EVENT #7 — DELIVERY PRICE SEEN ════════════════════
+   Fires when wilaya is selected and prices become visible.
+   Per-wilaya abandonment rate reveals price-sensitive regions.
+═══════════════════════════════════════════════════════════════ */
+function trackDeliveryPriceSeen(wilayaName,wilayaId,hPrice,dPrice){
+  if(deliveryPriceSeenFired)return;
+  deliveryPriceSeenFired=true;
+  ga4('delivery_price_seen',{
+    wilaya_name:wilayaName,
+    wilaya_id:wilayaId,
+    home_price:hPrice,
+    desk_price:dPrice,
+    time_on_page:timeOnPage
+  });
+  capiCustom('DeliveryPriceSeen',{
+    wilaya:wilayaName,
+    home_delivery_price:hPrice,
+    desk_delivery_price:dPrice,
+    value:CFG.priceUnit
+  });
+}
+
+/* ══ NEW EVENT #8 — POPUP CLOSE TIMING ══════════════════════
+   Tracks how long user spends reading the success popup.
+   Fast close = unsure; slow read = engaged post-conversion.
+═══════════════════════════════════════════════════════════════ */
+function trackPopupClose(){
+  var dwell=popupOpenTime?Math.round((Date.now()-popupOpenTime)/1000):0;
+  ga4('popup_closed',{
+    popup_type:'order_success',
+    dwell_seconds:dwell,
+    read_level:dwell<2?'instant':dwell<5?'glanced':dwell<15?'read':'deep_read'
+  });
+  capiCustom('OrderPopupClose',{
+    dwell_seconds:dwell,
+    value:CFG.priceUnit
+  });
+}
+
+/* ══ NEW EVENT #9 — BUNDLE UPSELL SEEN ══════════════════════
+   Fires when the "save X DZD" bonus tag appears (qty≥2).
+   Tracks whether upsell message is seen vs ignored.
+═══════════════════════════════════════════════════════════════ */
+function trackBundleUpsellSeen(qty,saving){
+  if(bundleUpsellSeenFired)return;
+  bundleUpsellSeenFired=true;
+  ga4('bundle_upsell_seen',{
+    quantity:qty,
+    saving_amount:saving,
+    time_on_page:timeOnPage
+  });
+  capiCustom('BundleUpsellSeen',{
+    quantity:qty,
+    saving_dzd:saving,
+    value:CFG.price2Unit*qty
+  });
+}
+
+/* ══ NEW EVENT #10 — WEB VITALS / LCP ═══════════════════════
+   Tracks Largest Contentful Paint (hero image performance).
+   Slow LCP = high bounce. Lets you correlate page speed to CVR.
+═══════════════════════════════════════════════════════════════ */
+function initWebVitals(){
+  if(!('PerformanceObserver' in window))return;
+  try{
+    var lcpObs=new PerformanceObserver(function(list){
+      var entries=list.getEntries();
+      var last=entries[entries.length-1];
+      var lcpMs=Math.round(last.startTime);
+      var rating=lcpMs<2500?'good':lcpMs<4000?'needs_improvement':'poor';
+      ga4('web_vitals',{
+        metric_name:'LCP',
+        metric_value:lcpMs,
+        metric_rating:rating,
+        element:last.element?last.element.tagName:'unknown'
+      });
+    });
+    lcpObs.observe({type:'largest-contentful-paint',buffered:true});
+  }catch(e){}
+  try{
+    var clsObs=new PerformanceObserver(function(list){
+      var clsScore=0;
+      list.getEntries().forEach(function(e){if(!e.hadRecentInput)clsScore+=e.value;});
+      if(clsScore>0){
+        ga4('web_vitals',{
+          metric_name:'CLS',
+          metric_value:parseFloat(clsScore.toFixed(4)),
+          metric_rating:clsScore<0.1?'good':clsScore<0.25?'needs_improvement':'poor'
+        });
+      }
+    });
+    clsObs.observe({type:'layout-shift',buffered:true});
+  }catch(e){}
+}
+initWebVitals();
+
+/* ══ NEW EVENT #11 — RETURN VISITOR ════════════════════════
+   Fired with PageView. IS_RETURNING already set above.
+   Enriches ALL events with returning visitor context.
+   (Applied globally via buildLeadCustomData + ga4 wrapper)
+═══════════════════════════════════════════════════════════════ */
+/* Fired as part of capiPageView below — standalone GA4 event here: */
+function trackReturnVisitor(){
+  if(IS_RETURNING){
+    ga4('return_visitor',{visit_count:VISIT_COUNT,time_since_first:'unknown'});
+    capiCustom('ReturnVisitor',{visit_count:VISIT_COUNT,value:CFG.priceUnit});
+  }
+}
+
+/* ══ UI UPDATE ══════════════════════════════════════════════ */
 function updateUI(){
   if(homePrice>0){
     document.getElementById('homePriceVal').textContent=homePrice.toLocaleString('fr-DZ')+' دج';
     document.getElementById('deskPriceVal').textContent=deskPrice.toLocaleString('fr-DZ')+' دج';
-  } else {
+  }else{
     document.getElementById('homePriceVal').textContent='---';
     document.getElementById('deskPriceVal').textContent='---';
   }
@@ -937,7 +1170,7 @@ function updateUI(){
   if(deliveryType==='home'){
     cardHome.classList.add('active');cardDesk.classList.remove('active');
     if(cmHome)cmHome.textContent='✓';if(cmDesk)cmDesk.textContent='';
-  } else {
+  }else{
     cardDesk.classList.add('active');cardHome.classList.remove('active');
     if(cmDesk)cmDesk.textContent='✓';if(cmHome)cmHome.textContent='';
   }
@@ -947,8 +1180,11 @@ function updateUI(){
   if(currentQty>=2){
     var savedTotal=(CFG.priceUnit*currentQty)-(CFG.price2Unit*currentQty);
     document.getElementById('savingAmount').textContent=savedTotal.toLocaleString('fr-DZ')+' دج';
-    bonusTag.classList.add('show');
-  } else {
+    if(!bonusTag.classList.contains('show')){
+      bonusTag.classList.add('show');
+      trackBundleUpsellSeen(currentQty,savedTotal); /* NEW #9 */
+    }
+  }else{
     bonusTag.classList.remove('show');
   }
 
@@ -960,7 +1196,8 @@ function updateUI(){
     var total=getTotalPrice(currentQty,currentDeliveryPrice);
     document.getElementById('summaryTotal').textContent=total.toLocaleString('fr-DZ')+' دج';
     summCard.classList.add('highlight');
-  } else {
+    trackOrderSummaryVisible(total); /* NEW #6 */
+  }else{
     document.getElementById('summaryDeliveryPrice').textContent='-- اختر الولاية --';
     document.getElementById('summaryTotal').textContent='---';
     summCard.classList.remove('highlight');
@@ -989,13 +1226,16 @@ function setStep(stepId,lineId,done,active){
 /* ══ WILAYA CHANGE ══════════════════════════════════════════ */
 document.getElementById('wilaya').addEventListener('change',function(){
   var val=this.value;
-  if(!val){homePrice=0;deskPrice=0;deliveryType='home';updateUI();return;}
+  if(!val){homePrice=0;deskPrice=0;deliveryType='home';deliveryPriceSeenFired=false;orderSummaryVisibleFired=false;updateUI();return;}
   var opt=this.options[this.selectedIndex];
   homePrice=parseInt(atob(opt.getAttribute('data-h')||'MA=='))||0;
   deskPrice=parseInt(atob(opt.getAttribute('data-d')||'MA=='))||0;
   deliveryType='home';
   this.classList.add('valid');this.classList.remove('error');
   document.getElementById('wilayaErr').classList.remove('show');
+
+  trackDeliveryPriceSeen(opt.text,val,homePrice,deskPrice); /* NEW #7 */
+
   if(!addToCartFired){addToCartFired=true;capiAddToCart(currentQty);}
   updateUI();
   ga4('wilaya_selected',{wilaya_name:opt.text,wilaya_id:val,home_price:homePrice,desk_price:deskPrice});
@@ -1004,38 +1244,46 @@ document.getElementById('wilaya').addEventListener('change',function(){
 document.getElementById('cardHome').addEventListener('click',function(){
   deliveryType='home';updateUI();
   capiCustom('DeliveryTypeSelect',{delivery_type:'home_delivery',delivery_price_dzd:homePrice});
+  ga4('delivery_type_select',{delivery_type:'home',price:homePrice});
 });
 document.getElementById('cardDesk').addEventListener('click',function(){
   deliveryType='desk';updateUI();
   capiCustom('DeliveryTypeSelect',{delivery_type:'desk_delivery',delivery_price_dzd:deskPrice});
+  ga4('delivery_type_select',{delivery_type:'desk',price:deskPrice});
 });
 
 window.changeQty=function(delta){
   var n=Math.max(1,Math.min(10,currentQty+delta));
   if(n!==currentQty){
     currentQty=n;
-    ga4('quantity_change',{quantity:n});
+    ga4('quantity_change',{quantity:n,is_bundle:n>=2});
+    if(n>=2){capiCustom('BundleQuantitySelect',{quantity:n,is_bundle:true,value:CFG.price2Unit*n});}
+    else{capiCustom('QuantityChange',{quantity:n,value:CFG.priceUnit});}
+    orderSummaryVisibleFired=false; /* reset so new total triggers event again */
     updateUI();
-    if(n>=2)capiCustom('BundleQuantitySelect',{quantity:n,is_bundle:true,value:SESSION_LEAD_VALUE*n});
   }
 };
 
 /* ══ FORM INTERACTION TRACKING ══════════════════════════════ */
-var fieldFocusTimes={};
 var formInteractionFiredCAPI=false;
 
 function trackFocus(id){
   fieldFocusTimes[id]=Date.now();
+  fieldInteracted[id]=true;
   if(!formStartTime)formStartTime=Date.now();
   ga4('form_field_focus',{field_name:id});
   if(!formInteractionFiredCAPI){
     formInteractionFiredCAPI=true;
-    capiCustom('FormStart',{field_name:id,value:SESSION_LEAD_VALUE});
+    capiCustom('FormStart',{field_name:id,value:CFG.priceUnit});
     ga4('form_start',{form_id:'orderForm'});
   }
 }
 function trackBlur(id){
   if(fieldFocusTimes[id])ga4('form_field_complete',{field_name:id,time_spent:Math.round((Date.now()-fieldFocusTimes[id])/1000)});
+  var el=document.getElementById(id);
+  var val=el?el.value:'';
+  var isValid=el?!el.classList.contains('error'):false;
+  trackFieldAbandon(id,val,isValid); /* NEW #2 */
   updateProgress();
 }
 
@@ -1046,11 +1294,18 @@ function trackBlur(id){
   el.addEventListener('change',function(){ga4('form_field_change',{field_name:id});});
 });
 
+/* Phone input with enhanced error tracking */
 document.getElementById('phone').addEventListener('input',function(){
   this.value=this.value.replace(/[^0-9]/g,'');
   var valid=/^(05|06|07)\d{8}$/.test(this.value);
-  if(valid){this.classList.add('valid');this.classList.remove('error');document.getElementById('phoneErr').classList.remove('show');}
-  else if(this.value.length===10){this.classList.add('error');this.classList.remove('valid');document.getElementById('phoneErr').classList.add('show');}
+  if(valid){
+    this.classList.add('valid');this.classList.remove('error');
+    document.getElementById('phoneErr').classList.remove('show');
+  }else if(this.value.length===10){
+    this.classList.add('error');this.classList.remove('valid');
+    document.getElementById('phoneErr').classList.add('show');
+    trackPhoneFormatError(this.value); /* NEW #5 */
+  }
   updateProgress();
 });
 document.getElementById('fullName').addEventListener('input',function(){
@@ -1058,42 +1313,49 @@ document.getElementById('fullName').addEventListener('input',function(){
   updateProgress();
 });
 
-/* ══ FORM VALIDATION ════════════════════════════════════════ */
+/* ══ FORM VALIDATION (with error tracking) ══════════════════ */
 function validate(){
   var ok=true;
+  var failedFields=[];
   var name=document.getElementById('fullName').value.trim();
   var phone=document.getElementById('phone').value.trim();
   var wilayaV=document.getElementById('wilaya').value;
   if(name.length>0&&name.length<3){
     document.getElementById('fullName').classList.add('error');
-    document.getElementById('nameErr').classList.add('show');ok=false;
-  } else {
+    document.getElementById('nameErr').classList.add('show');
+    ok=false;failedFields.push('name');
+  }else{
     document.getElementById('fullName').classList.remove('error');
     if(name.length>=3)document.getElementById('fullName').classList.add('valid');
     document.getElementById('nameErr').classList.remove('show');
   }
   if(!/^(05|06|07)\d{8}$/.test(phone)){
     document.getElementById('phone').classList.add('error');
-    document.getElementById('phoneErr').classList.add('show');ok=false;
-  } else {
+    document.getElementById('phoneErr').classList.add('show');
+    ok=false;failedFields.push('phone');
+  }else{
     document.getElementById('phone').classList.remove('error');
     document.getElementById('phone').classList.add('valid');
     document.getElementById('phoneErr').classList.remove('show');
   }
   if(!wilayaV){
     document.getElementById('wilaya').classList.add('error');
-    document.getElementById('wilayaErr').classList.add('show');ok=false;
-  } else {
+    document.getElementById('wilayaErr').classList.add('show');
+    ok=false;failedFields.push('wilaya');
+  }else{
     document.getElementById('wilaya').classList.remove('error');
     document.getElementById('wilaya').classList.add('valid');
     document.getElementById('wilayaErr').classList.remove('show');
   }
+  /* NEW #1 — fire validation error event with exact fields */
+  if(!ok){trackFormValidationError(failedFields);}
   return ok;
 }
 
 /* ══ TELEGRAM ════════════════════════════════════════════════ */
 function sendTg(bot,d){
   var dl=d.delType==='home'?'توصيل للمنزل 🏠':'توصيل للمكتب 📦';
+  var returning=IS_RETURNING?'🔄 عائد (زيارة '+VISIT_COUNT+')':'🆕 زائر جديد';
   var msg='🛒 <b>طلب جديد - Champions League UCL Budapest 2026</b>\n\n'
     +'👤 <b>الاسم:</b> '+d.name+'\n'
     +'📱 <b>الهاتف:</b> <code>'+d.phone+'</code>\n'
@@ -1104,7 +1366,8 @@ function sendTg(bot,d){
     +'📍 <b>سعر التوصيل:</b> '+d.delPrice.toLocaleString('fr-DZ')+' دج\n\n'
     +'💵 <b>المجموع الكلي:</b> <code>'+d.total.toLocaleString('fr-DZ')+' دج</code>\n'
     +'📅 <b>التاريخ:</b> '+d.dateStr+'\n'
-    +'🆔 <b>معرف الطلب:</b> <code>'+d.txId+'</code>';
+    +'🆔 <b>معرف الطلب:</b> <code>'+d.txId+'</code>\n'
+    +'📊 <b>الجهاز:</b> '+deviceType()+' | '+returning;
   return fetch('https://api.telegram.org/bot'+bot.token+'/sendMessage',{
     method:'POST',
     headers:{'Content-Type':'application/json'},
@@ -1112,24 +1375,15 @@ function sendTg(bot,d){
   }).then(function(r){return r.ok;}).catch(function(){return false;});
 }
 
-/* ══ ORDER SUBMISSION ════════════════════════════════════════
-   Flow:
-   1. Validate form
-   2. Fire InitiateCheckout (browser+CAPI)
-   3. Show success popup immediately
-   4. Async: fire Lead (PRIMARY) + CompleteRegistration (SECONDARY)
-   5. Send to Telegram x2 + Google Sheets
-═══════════════════════════════════════════════════════════════ */
+/* ══ ORDER SUBMISSION ════════════════════════════════════════ */
 window.submitOrder=async function(){
   if(orderSubmitted)return;
-  ga4('form_submit_attempt',{form_id:'orderForm'});
-
+  ga4('form_submit_attempt',{form_id:'orderForm',time_on_page:timeOnPage});
   if(!validate()){
     var firstErr=document.querySelector('.form-input.error,.form-select.error');
     if(firstErr)firstErr.scrollIntoView({behavior:'smooth',block:'center'});
     return;
   }
-
   var wilayaEl=document.getElementById('wilaya');
   var wilayaText=wilayaEl.options[wilayaEl.selectedIndex].text;
   var custName=document.getElementById('fullName').value.trim();
@@ -1139,14 +1393,13 @@ window.submitOrder=async function(){
   var now=new Date();
   var dateStr=now.toLocaleDateString('fr-DZ')+' '+now.toLocaleTimeString('fr-DZ');
   var txId='ORD_'+Date.now()+'_'+Math.random().toString(36).substr(2,7).toUpperCase();
-  var orderQty=currentQty, orderDel=currentDeliveryPrice, orderType=deliveryType;
+  var orderQty=currentQty,orderDel=currentDeliveryPrice,orderType=deliveryType;
   var formSec=formStartTime?Math.round((Date.now()-formStartTime)/1000):0;
 
-  /* Fire InitiateCheckout first — tracking the attempt */
   capiInitiateCheckout(orderQty,orderDel,custPhone,custName,wilayaText);
 
-  /* Mark submitted & update UI immediately */
   orderSubmitted=true;
+  popupOpenTime=Date.now(); /* for popup_close_timing NEW #8 */
   document.getElementById('popupCustomerName').textContent=custName?custName.split(' ')[0]:'عزيزنا';
   document.getElementById('popupOrderId').textContent='رقم الطلب: '+txId;
   document.getElementById('successPopup').classList.add('active');
@@ -1155,79 +1408,47 @@ window.submitOrder=async function(){
   btn.disabled=true;
   btn.innerHTML='<div><div class="submit-btn-text">✅ تم إرسال طلبك بنجاح!</div></div>';
 
-  /* Build order data object — shared between all downstream calls */
   var orderData={
-    name:      custName,
-    phone:     custPhone,
-    wilaya:    wilayaText,
-    qty:       orderQty,
-    prodPrice: prodPrice,
-    delType:   orderType,
-    delPrice:  orderDel,
-    total:     total,
-    txId:      txId,
-    dateStr:   dateStr,
-    formSec:   formSec
+    name:custName,phone:custPhone,wilaya:wilayaText,
+    qty:orderQty,prodPrice:prodPrice,delType:orderType,
+    delPrice:orderDel,total:total,txId:txId,dateStr:dateStr,formSec:formSec
   };
 
-  /* All async tracking in parallel — never blocks UX */
   (async function(){
-    var tgData={
-      name:     custName||'—',
-      phone:    custPhone,
-      wilaya:   wilayaText,
-      qty:      orderQty,
-      prodPrice:prodPrice,
-      delType:  orderType,
-      delPrice: orderDel,
-      total:    total,
-      dateStr:  dateStr,
-      txId:     txId
-    };
     var sheetPayload={
-      transaction_id:  txId,
-      date:            dateStr,
-      nom:             custName,
-      phone:           custPhone,
-      wilaya:          wilayaText,
-      commune:         '',
-      produit:         'UCL Budapest 2026 Final Ball — Size 5 — 450g',
-      prix_produit:    prodPrice,
-      quantite:        orderQty,
-      prix_total:      total,
-      livraison:       orderType==='home'?'A Domicile':'Point Relais',
-      prix_livraison:  orderDel,
-      utm_source:      UTM.source,
-      utm_medium:      UTM.medium,
-      utm_campaign:    UTM.campaign,
-      device:          /Mobi|Android/i.test(navigator.userAgent)?'mobile':'desktop',
-      time_on_page:    timeOnPage,
-      form_time_seconds:formSec
+      transaction_id:txId,date:dateStr,nom:custName,phone:custPhone,
+      wilaya:wilayaText,commune:'',
+      produit:'UCL Budapest 2026 Final Ball — Size 5 — 450g',
+      prix_produit:prodPrice,quantite:orderQty,prix_total:total,
+      livraison:orderType==='home'?'A Domicile':'Point Relais',
+      prix_livraison:orderDel,
+      utm_source:UTM.source,utm_medium:UTM.medium,utm_campaign:UTM.campaign,
+      device:deviceType(),time_on_page:timeOnPage,
+      form_time_seconds:formSec,is_returning:IS_RETURNING,
+      visit_count:VISIT_COUNT,phone_errors:phoneErrorCount
     };
-
     await Promise.allSettled([
-      /* PRIMARY: Lead — the conversion Meta optimizes for */
       capiLead(orderData),
-      /* SECONDARY: CompleteRegistration — backup signal */
       capiCompleteRegistration(orderData),
-      /* CRM / ops */
-      sendTg(TG1,tgData),
+      sendTg(TG1,Object.assign({},sheetPayload,orderData)),
       fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(sheetPayload)}).catch(function(){})
     ]);
   })();
 
-  /* Reset form state */
+  /* Reset form — but keep orderSubmitted=true to prevent re-submit */
   document.getElementById('orderForm').reset();
   currentQty=1;currentDeliveryPrice=0;homePrice=0;deskPrice=0;deliveryType='home';
   addToCartFired=false;formStartTime=null;formInteractionFiredCAPI=false;
+  deliveryPriceSeenFired=false;orderSummaryVisibleFired=false;bundleUpsellSeenFired=false;
+  phoneErrorCount=0;fieldFocusTimes={};fieldInteracted={};
   document.getElementById('qtyDisplay').textContent='1';
   document.querySelectorAll('.form-input,.form-select').forEach(function(el){el.classList.remove('valid','error');});
   updateUI();
 };
 
 window.closePopup=function(){
+  trackPopupClose(); /* NEW #8 */
   document.getElementById('successPopup').classList.remove('active');
-  ga4('popup_closed',{popup_type:'order_success'});
 };
 document.getElementById('successPopup').addEventListener('click',function(e){if(e.target===this)window.closePopup();});
 
@@ -1249,9 +1470,12 @@ function checkScrollMilestones(pct){
   [25,50,75,90,100].forEach(function(m){
     if(pct>=m&&!scrollMilestonesFired[m]){
       scrollMilestonesFired[m]=true;
-      ga4('scroll',{percent_scrolled:m});
-      if(m===75)capiCustom('ScrollDepth75',{scroll_depth:75,time_on_page:timeOnPage,value:SESSION_LEAD_VALUE});
-      if(m===100)capiCustom('ScrollDepth100',{scroll_depth:100,time_on_page:timeOnPage,value:SESSION_LEAD_VALUE});
+      ga4('scroll',{percent_scrolled:m,time_on_page:timeOnPage});
+      /* FIXED: 25% and 50% now also sent to CAPI (previously only GA4) */
+      if(m===25)capiCustom('ScrollDepth25',{scroll_depth:25,time_on_page:timeOnPage,value:CFG.priceUnit});
+      if(m===50)capiCustom('ScrollDepth50',{scroll_depth:50,time_on_page:timeOnPage,value:CFG.priceUnit});
+      if(m===75)capiCustom('ScrollDepth75',{scroll_depth:75,time_on_page:timeOnPage,value:CFG.priceUnit});
+      if(m===100)capiCustom('ScrollDepth100',{scroll_depth:100,time_on_page:timeOnPage,value:CFG.priceUnit});
     }
   });
 }
@@ -1263,9 +1487,15 @@ var revObs=new IntersectionObserver(function(entries){
 },{threshold:0.05,rootMargin:'0px 0px -20px 0px'});
 document.querySelectorAll('.reveal').forEach(function(el){revObs.observe(el);});
 
+/* Section visible — NEW #4: now fires to CAPI too */
 var secObs=new IntersectionObserver(function(entries){
-  entries.forEach(function(e){if(e.isIntersecting){ga4('section_view',{section_name:e.target.id});secObs.unobserve(e.target);}});
-},{threshold:0.5});
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      trackSectionVisibleCAPI(e.target.id); /* NEW #4 — sends to CAPI + GA4 */
+      secObs.unobserve(e.target);
+    }
+  });
+},{threshold:0.3});
 ['section3','section4','cod-form'].forEach(function(id){var el=document.getElementById(id);if(el)secObs.observe(el);});
 
 /* ══ TIME ON PAGE ════════════════════════════════════════════ */
@@ -1275,8 +1505,8 @@ setInterval(function(){
   [10,20,30,60,120,180].forEach(function(s){
     if(timeOnPage>=s&&!topFired[s]){
       topFired[s]=true;
-      ga4('time_on_page_milestone',{seconds:s});
-      if(s===30||s===60)capiCustom('TimeOnPage',{seconds:s,value:SESSION_LEAD_VALUE});
+      ga4('time_on_page_milestone',{seconds:s,form_started:formInteractionFiredCAPI,order_placed:orderSubmitted});
+      if(s===30||s===60)capiCustom('TimeOnPage',{seconds:s,value:CFG.priceUnit,form_started:formInteractionFiredCAPI?1:0});
     }
   });
 },1000);
@@ -1287,13 +1517,13 @@ document.addEventListener('visibilitychange',function(){
 document.addEventListener('mouseleave',function(e){
   if(e.clientY<=0&&!exitIntentFired&&!orderSubmitted){
     exitIntentFired=true;
-    ga4('exit_intent',{form_started:formInteractionFiredCAPI});
-    capiCustom('ExitIntent',{form_started:formInteractionFiredCAPI?1:0,time_on_page:timeOnPage,value:SESSION_LEAD_VALUE});
+    ga4('exit_intent',{form_started:formInteractionFiredCAPI,time_on_page:timeOnPage,scroll_depth:Math.max.apply(null,Object.keys(scrollMilestonesFired).map(Number).filter(Boolean).concat([0]))});
+    capiCustom('ExitIntent',{form_started:formInteractionFiredCAPI?1:0,time_on_page:timeOnPage,value:CFG.priceUnit});
   }
 });
 window.addEventListener('beforeunload',function(){
   var maxS=Math.max.apply(null,Object.keys(scrollMilestonesFired).map(Number).filter(Boolean).concat([0]));
-  ga4('page_exit',{time_on_page:timeOnPage,scroll_depth:maxS,form_started:formInteractionFiredCAPI,order_placed:orderSubmitted});
+  ga4('page_exit',{time_on_page:timeOnPage,scroll_depth:maxS,form_started:formInteractionFiredCAPI,order_placed:orderSubmitted,phone_errors:phoneErrorCount});
 });
 
 /* ══ NAVIGATION HELPERS ═════════════════════════════════════ */
@@ -1306,7 +1536,6 @@ var _codFormObserver=new IntersectionObserver(function(entries){
   entries.forEach(function(e){_formVisible=e.isIntersecting;_applyFloatBtnState();});
 },{threshold:0.05});
 _codFormObserver.observe(document.getElementById('cod-form'));
-
 function _applyFloatBtnState(){
   var btn=document.getElementById('floatBtn');
   if(_formVisible){btn.classList.add('hidden');}
@@ -1316,27 +1545,25 @@ function updateFloatBtn(){
   var hb=document.getElementById('heroWrap').getBoundingClientRect().bottom;
   var btn=document.getElementById('floatBtn');
   if(!_formVisible){
-    if(hb>100){
-      if(floatBtnMode!=='scroll'){floatBtnMode='scroll';btn.innerHTML='👇 اسحب للأسفل لاكتشاف التفاصيل';btn.href='#section3';}
-    } else {
-      if(floatBtnMode!=='order'){floatBtnMode='order';btn.innerHTML='🛒 اطلب الآن — الدفع عند الاستلام';btn.href='#cod-form';}
-    }
+    if(hb>100){if(floatBtnMode!=='scroll'){floatBtnMode='scroll';btn.innerHTML='👇 اسحب للأسفل لاكتشاف التفاصيل';btn.href='#section3';}}
+    else{if(floatBtnMode!=='order'){floatBtnMode='order';btn.innerHTML='🛒 اطلب الآن — الدفع عند الاستلام';btn.href='#cod-form';}}
   }
 }
 window.handleFloatClick=function(e){if(e)e.preventDefault();if(floatBtnMode==='scroll')window.scrollToSection('section3',e);else window.scrollToForm(e);};
 document.getElementById('floatBtn').addEventListener('click',function(){
-  ga4('cta_click',{cta_type:'floating_button',mode:floatBtnMode});
-  capiCustom('CTAClick',{cta_type:'floating_button',cta_mode:floatBtnMode,value:SESSION_LEAD_VALUE});
+  ga4('cta_click',{cta_type:'floating_button',mode:floatBtnMode,time_on_page:timeOnPage});
+  capiCustom('CTAClick',{cta_type:'floating_button',cta_mode:floatBtnMode,value:CFG.priceUnit});
 });
 document.querySelector('.sticky-btn').addEventListener('click',function(){
-  ga4('cta_click',{cta_type:'sticky_header_button'});
+  ga4('cta_click',{cta_type:'sticky_header_button',time_on_page:timeOnPage});
+  capiCustom('CTAClick',{cta_type:'sticky_header',value:CFG.priceUnit});
 });
 
 var formSecObs=new IntersectionObserver(function(entries){
   entries.forEach(function(e){
     if(e.isIntersecting){
-      ga4('form_section_visible',{form_id:'orderForm'});
-      capiCustom('FormSectionVisible',{value:SESSION_LEAD_VALUE});
+      ga4('form_section_visible',{form_id:'orderForm',time_on_page:timeOnPage});
+      capiCustom('FormSectionVisible',{value:CFG.priceUnit,time_on_page:timeOnPage});
       formSecObs.disconnect();
     }
   });
@@ -1346,9 +1573,18 @@ var fEl=document.getElementById('cod-form');if(fEl)formSecObs.observe(fEl);
 /* ══ INIT ════════════════════════════════════════════════════ */
 updateUI();
 
+/* Fire page-level events at idle */
 requestIdleCallback
-  ? requestIdleCallback(function(){capiPageView();setTimeout(capiViewContent,2500);},{timeout:3000})
-  : setTimeout(function(){capiPageView();setTimeout(capiViewContent,2500);},500);
+  ?requestIdleCallback(function(){
+      capiPageView();
+      trackReturnVisitor(); /* NEW #11 */
+      setTimeout(capiViewContent,2500);
+    },{timeout:3000})
+  :setTimeout(function(){
+      capiPageView();
+      trackReturnVisitor(); /* NEW #11 */
+      setTimeout(capiViewContent,2500);
+    },500);
 </script>
 </body>
 </html>
