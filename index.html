@@ -691,12 +691,16 @@ function ga4(name,params){
 }
 
 /* ══ IP FETCH ════════════════════════════════════════════════ */
-setTimeout(function(){
-  fetch('https://api.ipify.org?format=json',{signal:AbortSignal.timeout(3000)})
-    .then(function(r){return r.json();})
-    .then(function(d){cachedIp=d.ip||null;})
-    .catch(function(){});
-},2000);
+fetch('https://api.ipify.org?format=json', {signal: AbortSignal.timeout(3000)})
+  .then(function(r){ return r.json(); })
+  .then(function(d){ cachedIp = d.ip || null; })
+  .catch(function(){})
+  .finally(function(){
+    // IP is now available (or null if it failed) — fire page events
+    capiPageView();
+    trackReturnVisitor();
+    setTimeout(capiViewContent, 2500);
+  });
 
 /* ══ FB PIXEL HELPERS ═══════════════════════════════════════ */
 function pixelTrack(ev,params,eid){
